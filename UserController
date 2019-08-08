@@ -1,0 +1,192 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Administrator
+ * Date: 2019/8/6
+ * Time: 18:03
+ */
+namespace App\Http\Controllers;
+
+
+class testController extends Controller{
+
+    /**
+     * @SWG\Get(
+     *      path="/article/list",
+     *      tags={"分类","v1.3"},
+     *      operationId="article.list",
+     *      summary="获取知识库列表(分页)",
+     *      consumes={"application/json"},
+     *      produces={"application/json"},
+     *      security={{"api_key": {"scope"}}},
+     *      @SWG\Parameter(in="query",name="page",description="页码",required=false,type="integer",),
+     *      @SWG\Parameter(in="query",name="title",description="知识库标题",required=false,type="string",),
+     *      @SWG\Parameter(in="query",name="type_id",description="类型id",required=false,type="integer",),
+     *      @SWG\Parameter(in="query",name="pid",description="产品编号",required=false,type="string",),
+     *      @SWG\Response(response=200,description="访问成功",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(property="code", type="string",description="状态码"),
+     *              @SWG\Property(property="message", type="string",description="提示信息"),
+     *              @SWG\Property(property="data", type="object",
+     *                  @SWG\Property(property="current_page", type="string", description="现在的页码"),
+     *                  @SWG\Property(property="first_page_url", type="string", description="第一页URL"),
+     *                  @SWG\Property(property="from", type="integer", description="开始"),
+     *                  @SWG\Property(property="last_page", type="string", description="最后一页页码"),
+     *                  @SWG\Property(property="last_page_url", type="string", description="最后一页url"),
+     *                  @SWG\Property(property="next_page_url", type="integer", description="下一页url"),
+     *                  @SWG\Property(property="path", type="string",description="路径"),
+     *                  @SWG\Property(property="per_page", type="integer", description="每页显示数量"),
+     *                  @SWG\Property(property="prev_page_url", type="string",description="上一页地址"),
+     *                  @SWG\Property(property="to", type="integer", description="结束"),
+     *                  @SWG\Property(property="total", type="integer", description="总条数"),
+     *                  @SWG\Property(property="lists", type="array",
+     *                      @SWG\Items(type="object",
+     *                          @SWG\Property(property="aid", type="string",description="知识库编号"),
+     *                          @SWG\Property(property="title", type="string",description="标题"),
+     *                          @SWG\Property(property="content", type="DateTime",description="内容"),
+     *                          @SWG\Property(property="created_at", type="string",description="创建时间"),
+     *                          @SWG\Property(property="views", type="integer",description="浏览数量"),
+     *                          @SWG\Property(property="product_name", type="string",description="产品名称"),
+     *                          @SWG\Property(property="type_name", type="string",description="类型名称"),
+     *                      ),
+     *                  ),
+     *              ),
+     *          )
+     *      ),
+     * )
+     */
+    public function test(){
+
+    }
+
+    /**
+     * @SWG\Post(
+     *   path="/user/login",
+     *   tags={"User"},
+     *   summary="登录接口(用户名+密码)",
+     *   description="用户登录接口,账号可为 用户名 或 手机号. 参考(这个会在页面产生一个可跳转的链接: [用户登录注意事项](http://blog.csdn.net/)",
+     *   @SWG\Parameter(name="userName", type="string", required=true, in="formData",description="登录用户名/手机号"),
+     *   @SWG\Parameter(name="password", type="string", required=true, in="formData",description="登录密码"),
+     *   @SWG\Parameter(name="image_list", type="string", required=true, in="formData",
+     *     @SWG\Schema(type="array", @SWG\Items(ref="#/definitions/UserDetail")),
+     *     description="用户相册. 好吧,没人会在登录时要求填一堆图片信息.这里是为了示例 带结构的数据, @SWG\Schema ,这个结构需要另行定义,下面会讲."
+     *   ),
+     *   @SWG\Parameter(name="video", type="string", required=true, in="formData",
+     *     @SWG\Schema(ref="#/definitions/UserDetail"),
+     *     description="用户 呃... 视频? 同上,为了示例 @SWG\Schema ."
+     *   ),
+     *   @SWG\Parameter(name="client_type", type="integer", required=false, in="formData",description="调用此接口的客户端类型: 1-Android, 2-IOS. 非必填,所以 required 写了 false"),
+     *   @SWG\Parameter(name="gender", type="integer", required=false, in="formData",default="1",description="性别: 1-男; 2-女. 注意这个参数的default上写的不是参数默认值,而是默认会被填写在swagger页面上的值,为的是方便用swagger就地访问该接口."),
+     *   @SWG\Response(response=200,description="用户列表",  @SWG\Schema(type="array", @SWG\Items(ref="#/definitions/User"))),
+     *   @SWG\Response(response=201,description="用户对像",  @SWG\Schema(type="object", ref="#/definitions/User")),
+     *   @SWG\Response(response=202,description="用户详情",  @SWG\Schema(type="object", ref="#/definitions/UserDetail")),
+     *   @SWG\Response(response=203,description="用户文章列表",  @SWG\Schema(type="array", @SWG\Items(ref="#/definitions/Post"))),
+     * )
+     */
+    public function test2(){
+
+    }
+
+    /**
+     * @SWG\Get(path="/User/myWebPage", tags={"User"},
+     *   produces={"text/html"},
+     *   summary="用户的个人网页",
+     *   description="这不是个api接口,这个返回一个页面,所以 produces 写了 text/html",
+     *   @SWG\Parameter(name="userId", type="integer", required=true, in="query"),
+     *   @SWG\Parameter(name="userToken", type="string", required=true, in="query"),
+     *   @SWG\Parameter(name="file", type="file", required=true, in="formData",description="用户令牌",),
+     *   @SWG\Response(response=200,description="this is html")
+     * )
+     */
+    public function testHtml(){
+
+    }
+
+    /**
+     * @SWG\Post(path="/User", tags={"User"},
+     *   produces={"application/json"},
+     *   summary="用户创建",
+     *   description="创建一条用户",
+     *   @SWG\Parameter(name="username", type="string", required=true, in="query"),
+     *   @SWG\Parameter(name="password", type="string", required=true, in="query"),
+     *   @SWG\Parameter(name="file", type="file", required=true, in="formData",description="用户令牌",),
+     *   @SWG\Response(response=200,description="成功",@SWG\Schema(ref="#/definitions/SuccessObject")),
+     * )
+     */
+
+    public function create(){
+
+    }
+
+    /**
+     * @SWG\Put(path="/User", tags={"User"},
+     *   produces={"application/json"},
+     *   summary="用户更新",
+     *   description="更新一条用户信息",
+     *   @SWG\Parameter(name="username", type="string", required=true, in="query"),
+     *   @SWG\Parameter(name="password", type="string", required=true, in="query"),
+     *   @SWG\Parameter(name="file", type="file", required=true, in="formData",description="用户令牌",),
+     *   @SWG\Response(response=200,description="成功",@SWG\Schema(ref="#/definitions/SuccessObject")),
+     * )
+     */
+
+    public function update(){
+
+    }
+
+    /**
+     * @SWG\Delete(path="/User", tags={"User"},
+     *   produces={"application/json"},
+     *   summary="用户删除",
+     *   description="删除一条用户信息",
+     *   @SWG\Parameter(name="id", type="integer", required=true, in="query"),
+     *   @SWG\Parameter(name="token", type="string", required=true, in="formData",description="用户令牌",),
+     *   @SWG\Response(response=200,description="成功",@SWG\Schema(ref="#/definitions/Success")),
+     * )
+     */
+
+    public function delete(){
+
+    }
+
+    /**
+     * @SWG\Get(path="/User/list", tags={"User"},
+     *   produces={"application/json"},
+     *   summary="用户列表",
+     *   description="显示一个用户列表",
+     *   @SWG\Parameter(name="page", type="integer", required=false, in="query", default=1),
+     *   @SWG\Parameter(name="limit", type="integer", required=false, in="query",default=10),
+     *   @SWG\Response(response=200,description="成功",@SWG\Schema(
+     *     allOf = {
+     *     @SWG\Schema(ref="#/definitions/SuccessArray"),
+     *     @SWG\Schema(@SWG\Property(property="data",type="array",@SWG\Items(ref="#/definitions/User"))),
+     *     }
+     * )),
+     * )
+     */
+
+    public function lists(){
+
+    }
+
+    /**
+     * @SWG\Get(path="/User/show", tags={"User"},
+     *   produces={"application/json"},
+     *   summary="用户详情",
+     *   description="显示一个用户的详情",
+     *   @SWG\Parameter(name="id", type="integer", required=true, in="query"),
+     *   @SWG\Response(response=200,description="成功",@SWG\Schema(
+     *     allOf ={
+     *     @SWG\Schema(ref="#/definitions/SuccessObject"),
+     *     @SWG\Schema(@SWG\Property(property="data",type="object",ref="#/definitions/User"),),
+     *     }
+     * )),
+     *   @SWG\Response(response=400,description="失败",@SWG\Schema(ref="#/definitions/Failed")),
+     * )
+     */
+
+    public function show(){
+
+    }
+}
